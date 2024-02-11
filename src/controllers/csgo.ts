@@ -7,7 +7,7 @@ const commonFetch = (res: Response, url: string) => {
 	axios
 		.get(url)
 		.then((response: AxiosResponse) => {
-			res.status(200);
+			res.status(response.status);
 			res.send(JSON.stringify(response.data));
 		})
 		.catch((error: AxiosError) => {

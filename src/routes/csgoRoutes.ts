@@ -3,7 +3,6 @@ const csgoRouter = expressCsgo.Router();
 
 var csgo = require("../controllers/csgo");
 
-// router.get("/", () => {});
 csgoRouter.get("/GetPlayerStats", csgo.getPlayerStats);
 
 

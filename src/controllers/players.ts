@@ -7,7 +7,7 @@ const commonFetch = (res: Response, url: string) => {
 	axios
 		.get(url)
 		.then((response: AxiosResponse) => {
-			res.status(200);
+			res.status(response.status);
 			res.send(JSON.stringify(response.data));
 		})
 		.catch((error: AxiosError) => {
@@ -20,7 +20,7 @@ const commonFetch = (res: Response, url: string) => {
 };
 
 module.exports = {
-	getNewsForApp : (req: Request, res: Response, next: NextFunction) => {
+	getNewsForApp: (req: Request, res: Response, next: NextFunction) => {
 		const appid: string = req.query.appid as string;
 		const url: string = `http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=${appid}&count=3&maxlength=300&format=json`;
 		commonFetch(res, url);
@@ -63,7 +63,7 @@ module.exports = {
 		const url: string = ` http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${process.env.STEAM_API_KEY}&steamid=${steamid}&format=json`;
 		commonFetch(res, url);
 	},
-	getUserStatsForGame : (req: Request, res: Response, next: NextFunction) => {
+	getUserStatsForGame: (req: Request, res: Response, next: NextFunction) => {
 		const steamid: string = req.query.steamid as string;
 		const appid: string = req.query.appid as string;
 		if (!steamid || !appid) {
@@ -72,5 +72,4 @@ module.exports = {
 		const url: string = `http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?key=${process.env.STEAM_API_KEY}&steamid=${steamid}&appid=${appid}`;
 		commonFetch(res, url);
 	},
-	
 };

@@ -1,8 +1,6 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import dotenv from "dotenv";
-import { AxiosResponse } from "axios";
 
-const axios = require("axios");
 const steamRoutes = require("./routes/steamRoutes");
 const csgoRoutes = require("./routes/csgoRoutes");
 
